@@ -169,5 +169,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/python,windows
-
-final_project_ESG/secrets.josn
+secrets.josn
