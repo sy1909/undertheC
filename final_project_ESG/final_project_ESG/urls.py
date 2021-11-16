@@ -21,4 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', views.index),
     path('model_load/', views.model_load , name = 'model_load'),
+    path('create_wordcloud/', views.create_wordcloud , name = 'create_wordcloud'),
+    
 ]

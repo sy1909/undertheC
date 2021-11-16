@@ -71,6 +71,24 @@
                     <div class="col-xl-4 col-lg-5">
                         <div class="featured-text text-center text-lg-left">
                             <h4>탄소배출현황</h4>
+                            <!--추가한 부분-->
+                            <form action="{% url 'create_wordcloud' %}" method="post" style = margin:20px>
+                            {%csrf_token%}
+                            <!-- Default form group -->
+
+                                <!-- Default input -->
+                                <div class="form-group">
+                                    <label style="font-family: 'Nanum Barun Gothic'" for="formGroupExampleInput">입력하신 키워드로 최근 기사 워드클라우드를 생성합니다.</label>
+                                    <input style="font-family: 'Nanum Barun Gothic'" type="text" name="keyword" class="form-control" id="formGroupExampleInput" placeholder="키워드를 입력하세요">
+                                </div>
+
+                            <button style="font-family: 'Nanum Barun Gothic' !important;" type="submit" class="btn btn-primary btn-md pull-right">워드클라우드생성</button>
+
+                            </form>
+                            {% if imgfile %}
+                            <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="{%static 'assets/img/wordcloudkey.jpg'%}" alt="..." /></div>
+                            {% endif %}
+                            <!--추가한 부분-->
                             <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use it for any project - even commercial projects! Download it, customize it, and publish your website!</p>
                         </div>
                     </div>
