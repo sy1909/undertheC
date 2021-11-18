@@ -16,11 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from final_project_ESG import views
+from final_project_ESG import views2
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', views.index),
     path('model_load/', views.model_load , name = 'model_load'),
     path('create_wordcloud/', views.create_wordcloud , name = 'create_wordcloud'),
+    path('wordcloud2/', views.wordcloud2 , name = 'wordcloud2'),    
+    path('model_load2/', views.model_load2 , name = 'model_load2'),   
+    path('model_load_emission/', views2.model_load_emission , name = 'model_load_emission'),   
     
 ]

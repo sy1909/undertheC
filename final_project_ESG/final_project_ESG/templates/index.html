@@ -8,6 +8,7 @@
         <meta name="author" content="" />
         <title>Grayscale - Start Bootstrap Theme</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -29,6 +30,9 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#dashboard">DashBoard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#predict_cer">forecasting_cer</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#predict_emission">forecasting_emission</a></li>
                         <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
                     </ul>
                 </div>
@@ -55,47 +59,40 @@
                         <p class="text-white-50">
                             온실가스 배출을 최대한 줄이고, 남은 온실가스는 흡수 및 제거를 통해 실질 배출량이 0(Zero)가 되는 개념 <br>
                             <a href="https://www.korea.kr/special/policyCurationView.do?newsId=148881562">2050 탄소중립</a><br>
-                            The theme is open source, and you can use it for any purpose, personal or commercial.
+                            Nationally Determined Contribution - carbon neutrality
                         </p>
                     </div>
                 </div>
-                <img class="img-fluid" src="{%static 'assets/img/ipad.png'%}" alt="..." />
+                <img class="img-fluid" src="{%static 'assets/img/zero emission2.png'%}" alt="..." />
             </div>
         </section>
         <!-- Projects-->
-        <section class="projects-section bg-light" id="projects">
+        <section class="about-section" id="projects">
             <div class="container px-4 px-lg-5">
                 <!-- Featured Project Row-->
-                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                    <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="{%static 'assets/img/bg-masthead.jpg'%}" alt="..." /></div>
+                <div class="row gx-0 mb-4 mb-lg-5 align-items-center" id = 'ajaxuse'>
+                    <div class="col-xl-8 col-lg-7" id = 'ajaxuse2'><img class="img-fluid mb-3 mb-lg-0" src="{%static 'assets/img/carbon_n.png'%}" alt="..." /></div>
                     <div class="col-xl-4 col-lg-5">
-                        <div class="featured-text text-center text-lg-left">
-                            <h4>탄소배출현황</h4>
-                            <!--추가한 부분-->
-                            <form action="{% url 'create_wordcloud' %}" method="post" style = margin:20px>
-                            {%csrf_token%}
-                            <!-- Default form group -->
+                        <div class="featured-text text-center text-white mb-4">
+                            <h4>키워드 탐색</h4>
 
-                                <!-- Default input -->
+                            <!--ajax로 변경-->
+                            <div class='box-body'>
+                                <!--0820추가 버튼클릭 json 형식 script로 받아옴-->
                                 <div class="form-group">
                                     <label style="font-family: 'Nanum Barun Gothic'" for="formGroupExampleInput">입력하신 키워드로 최근 기사 워드클라우드를 생성합니다.</label>
-                                    <input style="font-family: 'Nanum Barun Gothic'" type="text" name="keyword" class="form-control" id="formGroupExampleInput" placeholder="키워드를 입력하세요">
+                                    <input style="font-family: 'Nanum Barun Gothic'" type="text" class="form-control" placeholder="키워드를 입력하세요" id = 'cword' >
+                                    <button style="font-family: 'Nanum Barun Gothic' !important;" class="btn btn-primary btn-md pull-right" id ='test_ajax'>워드클라우드생성</button>
                                 </div>
-
-                            <button style="font-family: 'Nanum Barun Gothic' !important;" type="submit" class="btn btn-primary btn-md pull-right">워드클라우드생성</button>
-
-                            </form>
-                            {% if imgfile %}
-                            <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="{%static 'assets/img/wordcloudkey.jpg'%}" alt="..." /></div>
-                            {% endif %}
-                            <!--추가한 부분-->
-                            <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use it for any project - even commercial projects! Download it, customize it, and publish your website!</p>
+                            </div>
+                            <!--여기까지 추가한부분-->
+                            <p class="text-white-50 mb-0"> 빈도가 높고 핵심어일수록 큰 글씨로 중심부에 표현되며, 어떤 명사가 많이 언급되고 있는지 확인합니다.</p>
                         </div>
                     </div>
                 </div>
                 <!-- Project One Row-->
                 <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-                    <div class="col-lg-6"><img class="img-fluid" src="{%static 'assets/img/demo-image-01.jpg'%}" alt="..." /></div>
+                    <div class="col-lg-6"><img class="img-fluid" src="{%static 'assets/img/carbon2.jpg'%}" alt="..." /></div>
                     <div class="col-lg-6">
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
@@ -110,7 +107,7 @@
                 </div>
                 <!-- Project Two Row-->
                 <div class="row gx-0 justify-content-center">
-                    <div class="col-lg-6"><img class="img-fluid" src="{%static 'assets/img/demo-image-02.jpg'%}" alt="..." /></div>
+                    <div class="col-lg-6"><img class="img-fluid" src="{%static 'assets/img/forecast.jpg'%}" alt="..." /></div>
                     <div class="col-lg-6 order-lg-first">
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
@@ -126,61 +123,119 @@
             </div>
         </section>
 
-        <section class="projects-section bg-light" id="projects">
+        <section class="about-section" id="dashboard">
             <div class="container px-4 px-lg-5">
-                    <iframe src = " https://public.tableau.com/views/___16367158166750/1?:language=ko-KR&:display_count=n&:origin=viz_share_link&:showVizHome=no&:embed=true" width="1768" height="2000"></iframe>
+                    <iframe src = " https://public.tableau.com/views/_16372167822360/3?:language=ko-KR&:display_count=n&:origin=viz_share_link&:showVizHome=no&:embed=true" width="1768" height="2000"></iframe>
             </div>
         </section>
+        <section class="about-section text-light " id="predict_cer">
         <!--학습된 모델에 값을 넘기는 부분-->
-        <div class="row wow fadeIn ">
-
+        <div class="row gx-0 justify-content-center">
           <!--Grid column-->
-          <div class="col-lg-6 col-md-12 px-4">
-
-            <form action="{% url 'model_load' %}" method="post" style = margin:20px>
+            <div class="col-lg-4 col-md-12 px-4" id = 'ajaxuse2'><img class="img-fluid mb-3 mb-lg-0" src="{%static 'assets/img/certified.png'%}" alt="..." /></div>
+            <div class="col-lg-4 col-md-12 px-4">
+            <!--<form action="{% url 'model_load' %}" method="post" style = margin:20px>-->
             {%csrf_token%}
+                <div class="form-group">
+                    <label style="font-family: 'Nanum Barun Gothic'" for="formGroupExampleInput">석탄 가격</label>
+                    <input style="font-family: 'Nanum Barun Gothic'" type="text" name="avg_temp" class="form-control" id="11" placeholder="석탄 가격을 입력하세요.">
+                </div>
+                <!-- Default input -->
+                <div class="form-group">
+                    <label style="font-family: 'Nanum Barun Gothic'" for="formGroupExampleInput">코스피 지수</label>
+                    <input style="font-family: 'Nanum Barun Gothic'" type="text" name="min_temp" class="form-control" id="22" placeholder="코스피 지수를 입력하세요.">
+                </div>
+                <!-- Default input -->
+                <div class="form-group">
+                    <label style="font-family: 'Nanum Barun Gothic'" for="formGroupExampleInput">원유 가격</label>
+                    <input style="font-family: 'Nanum Barun Gothic'" type="text" name="max_temp" class="form-control" id="33" placeholder="원유 가격을 입력하세요.">
+                </div>
+                <!-- Default input -->
+                <div class="form-group">
+                    <label style="font-family: 'Nanum Barun Gothic'" for="formGroupExampleInput">전력 수요</label>
+                    <input style="font-family: 'Nanum Barun Gothic'" type="text" name="rain_fall" class="form-control" id="44" placeholder="전력 수요를 입력하세요.">
+                </div>
               <!-- Default form group -->
+                <button style="font-family: 'Nanum Barun Gothic' !important;" class="btn btn-primary btn-md pull-right" id = 'predict_pr'>예측하기</button>
 
-                  <!-- Default input -->
-                  <div class="form-group">
-                      <label style="font-family: 'Nanum Barun Gothic'" for="formGroupExampleInput">석탄 가격</label>
-                      <input style="font-family: 'Nanum Barun Gothic'" type="text" name="avg_temp" class="form-control" id="formGroupExampleInput" placeholder="석탄 가격을 입력하세요.">
-                  </div>
-                  <!-- Default input -->
-                  <div class="form-group">
-                      <label style="font-family: 'Nanum Barun Gothic'" for="formGroupExampleInput">코스피 지수</label>
-                      <input style="font-family: 'Nanum Barun Gothic'" type="text" name="min_temp" class="form-control" id="formGroupExampleInput" placeholder="코스피 지수를 입력하세요.">
-                  </div>
-                  <!-- Default input -->
-                  <div class="form-group">
-                      <label style="font-family: 'Nanum Barun Gothic'" for="formGroupExampleInput">원유 가격</label>
-                      <input style="font-family: 'Nanum Barun Gothic'" type="text" name="max_temp" class="form-control" id="formGroupExampleInput" placeholder="원유 가격을 입력하세요.">
-                  </div>
-                  <!-- Default input -->
-                  <div class="form-group">
-                      <label style="font-family: 'Nanum Barun Gothic'" for="formGroupExampleInput">전력 수요</label>
-                      <input style="font-family: 'Nanum Barun Gothic'" type="text" name="rain_fall" class="form-control" id="formGroupExampleInput" placeholder="전력 수요를 입력하세요.">
-                  </div>
-              <!-- Default form group -->
-              <button style="font-family: 'Nanum Barun Gothic' !important;" type="submit" class="btn btn-primary btn-md pull-right">예측하기</button>
-
-            </form>
-
-          </div><br>
+            </div><br>
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-12" >
+                <p class="h5 text-center mb-4" style="font-family: 'Nanum Barun Gothic'">예측 결과</p>
+                    <div id = 'predict_price'>
+                    </div>
+            </div>
           <!--/Grid column-->
-            <!--수정해야할부분1-->
-          <!--Grid column-->
-          <div class="col-lg-6 col-md-12" >
-            <p class="h5 text-center mb-4" style="font-family: 'Nanum Barun Gothic'">예측 결과</p>
-            {% if price %}
-              <h5 class="text-center mt-3">예측된 가격은 {{ price }}원입니다.</h5>
-            {% endif %}
-          </div>
-          <!--/Grid column-->
-
         </div>
-        <div><p></div>
-        <div><p></div>
+        </section>
+
+<!-- ------------------------------------------------------- -->
+        <section class="about-section text-light" id="predict_emission">
+            <div class="row gx-0 justify-content-centerv">
+            <div class="col-lg-4 col-md-12 px-4" id = 'ajaxuse2'><img class="img-fluid mb-3 mb-lg-0" src="{%static 'assets/img/carbonemissionbg.png'%}" alt="..." /></div>
+            <!--Grid column-->
+                <div class="col-lg-4 col-md-12 px-4">
+                    <div class="form-group">
+                        <label style="font-family: 'Nanum Barun Gothic'" for="formGroupExampleInput">기업명</label>
+                        <input style="font-family: 'Nanum Barun Gothic'" type="text" name="var1" class="form-control" id="a1" placeholder="기업명을 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-family: 'Nanum Barun Gothic'" for="formGroupExampleInput">석탄 사용량(단위: 천 ton)</label>
+                        <input style="font-family: 'Nanum Barun Gothic'" type="text" name="var1" class="form-control" id="111" placeholder="석탄 사용량을 입력하세요.">
+                    </div>
+                    <!-- Default input -->
+                    <div class="form-group">
+                        <label style="font-family: 'Nanum Barun Gothic'" for="formGroupExampleInput">석유 사용량(단위: 천 ton)</label>
+                        <input style="font-family: 'Nanum Barun Gothic'" type="text" name="var2" class="form-control" id="222" placeholder="석유 사용량을 입력하세요.">
+                    </div>
+                    <!-- Default input -->
+                    <div class="form-group">
+                        <label style="font-family: 'Nanum Barun Gothic'" for="formGroupExampleInput">천연가스 사용량(단위: 천 ton)</label>
+                        <input style="font-family: 'Nanum Barun Gothic'" type="text" name="var3" class="form-control" id="333" placeholder="천연가스 사용량을 입력하세요.">
+                    </div>
+                    <!-- Default input -->
+                    <div class="form-group">
+                        <label style="font-family: 'Nanum Barun Gothic'" for="formGroupExampleInput">전력 사용량(단위: GWh)</label>
+                        <input style="font-family: 'Nanum Barun Gothic'" type="text" name="var4" class="form-control" id="444" placeholder="전력 사용량을 입력하세요.">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-family: 'Nanum Barun Gothic'" for="formGroupExampleInput">열에너지 사용량(단위: 천 toe)</label>
+                        <input style="font-family: 'Nanum Barun Gothic'" type="text" name="var5" class="form-control" id="555" placeholder="열에너지 사용량을 입력하세요.">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-family: 'Nanum Barun Gothic'" for="formGroupExampleInput">신재생 및 기타 사용량(단위: 천 toe)</label>
+                        <input style="font-family: 'Nanum Barun Gothic'" type="text" name="var6" class="form-control" id="666" placeholder="신재생에너지 사용량을 입력하세요.">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-family: 'Nanum Barun Gothic'" for="formGroupExampleInput">gdp</label>
+                        <input style="font-family: 'Nanum Barun Gothic'" type="text" name="var7" class="form-control" id="777" placeholder="gdp를 입력하세요.">
+                    </div>
+                <button style="font-family: 'Nanum Barun Gothic' !important;" class="btn btn-primary btn-md pull-right" id = 'predict_emission2'>예측하기</button>
+
+                </div>
+                <div class="col-lg-4 col-md-12" >
+                    <p class="h5 text-center mb-4" style="font-family: 'Nanum Barun Gothic'">예측 결과</p>
+                        <div id = 'predict_emission3'>
+                        </div>
+                </div>
+            
+            </div>
+        </section>
+<!-- ------------------------------------------------------- -->
+
+
+        <div class="col-md-6 col-lg-4 mb-5">
+            <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
+                <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                    <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                </div>
+                <img class="img-fluid" src="{%static 'assets/img/cabin.png'%}" alt="..." />
+            </div>
+        </div>
+
+
+
+
 
         <!-- Signup-->
         <section class="signup-section" id="signup">
@@ -236,7 +291,7 @@
                                 <i class="fas fa-map-marked-alt text-primary mb-2"></i>
                                 <h4 class="text-uppercase m-0">Address</h4>
                                 <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50">4923 Market Street, Orlando FL</div>
+                                <div class="small text-black-50">seoul or incheon eodeenga</div>
                             </div>
                         </div>
                     </div>
@@ -246,7 +301,10 @@
                                 <i class="fas fa-envelope text-primary mb-2"></i>
                                 <h4 class="text-uppercase m-0">Email</h4>
                                 <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50"><a href="#!">hello@yourdomain.com</a></div>
+                                <div class="small text-black-50"><a href="#!">someday0324@naver.com</a></div>
+                                <div class="small text-black-50"><a href="#!">백@naver.com</a></div>
+                                <div class="small text-black-50"><a href="#!">신@naver.com</a></div>
+                                <div class="small text-black-50"><a href="#!">홍@naver.com</a></div>
                             </div>
                         </div>
                     </div>
@@ -256,7 +314,7 @@
                                 <i class="fas fa-mobile-alt text-primary mb-2"></i>
                                 <h4 class="text-uppercase m-0">Phone</h4>
                                 <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50">+1 (555) 902-8832</div>
+                                <div class="small text-black-50">010-0000-0000</div>
                             </div>
                         </div>
                     </div>
@@ -268,9 +326,123 @@
                 </div>
             </div>
         </section>
+
+
+        <section>
+            <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                        <div class="modal-body text-center pb-5">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-8">
+                                        <!-- Portfolio Modal - Title-->
+                                        <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Log Cabin</h2>
+                                        <!-- Icon Divider-->
+                                        <div class="divider-custom">
+                                            <div class="divider-custom-line"></div>
+                                            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                            <div class="divider-custom-line"></div>
+                                        </div>
+                                        <!-- Portfolio Modal - Image-->
+                                        <img class="img-fluid rounded mb-5" src="{%static 'assets/img/cabin.png'%}" alt="..." />
+                                        <!-- Portfolio Modal - Text-->
+                                        <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
         <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Your Website 2021</div></footer>
-        <!-- Bootstrap core JS-->
+        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; </div>
+        <a href="https://github.com/sy1909" target="_blank"> 김승윤 </a>
+        <a href="" target="_blank"> 백지엽 </a>
+        <a href="" target="_blank"> 오신옥 </a>
+        <a href="" target="_blank"> 홍인표 </a>
+        </footer>
+
+
+        <script src="{% static 'Jquery/jquery-2.1.4.min.js'%}"></script>
+        <script type = 'text/javascript'> 
+        $(document).ready(function(){
+            $("#test_ajax").click(function javascript_onclikc(){
+                alert('워드클라우드를 생성합니다.');
+                $.ajax({
+                    url: "{% url 'wordcloud2' %}" , 
+                    type: 'post',
+                    data : { 'csrfmiddlewaretoken' : '{{csrf_token}}', 
+                                keyword : $('#cword').val()
+                            },
+                    dataType : 'json',
+                    success : function(list) {
+                        var txt = '';
+                        txt = "<img class=\"img-fluid mb-3 mb-lg-0\" src=\"{%static 'assets/img/wordcloudkey.jpg'%}\" alt=\"...\" />"
+                        $('#ajaxuse2').html(txt)
+                    }
+                })
+            })
+
+            $("#predict_pr").click(function javascript_onclikc(){
+                alert('배출권시세 예측을 실행합니다.');
+                $.ajax({
+                    url: "{% url 'model_load2' %}" , 
+                    type: 'post',
+                    data : { 'csrfmiddlewaretoken' : '{{csrf_token}}', 
+                                avg_temp : $('#11').val(),
+                                min_temp : $('#22').val(),
+                                max_temp : $('#33').val(),
+                                rain_fall : $('#44').val()
+                            },
+                    dataType : 'json',
+                    success : function(data) {
+                        var txt = '';
+                        txt = "<h5 class=\"text-center mt-3\" id = 'predict_price'>예측된 가격은 "+data.price+"원입니다.</h5>"
+                        $('#predict_price').html(txt)
+                    }
+                })
+            })
+
+            $("#predict_emission2").click(function javascript_onclikc(){
+                alert('배출량 예측을 실행합니다.');
+                $.ajax({
+                    url: "{% url 'model_load_emission' %}" , 
+                    type: 'post',
+                    data : { 'csrfmiddlewaretoken' : '{{csrf_token}}', 
+                                var1 : $('#111').val(),
+                                var2 : $('#222').val(),
+                                var3 : $('#333').val(),
+                                var4 : $('#444').val(),
+                                var5 : $('#555').val(),
+                                var6 : $('#666').val(),
+                                var7 : $('#777').val(),
+                            },
+                    dataType : 'json',
+                    success : function(data) {
+                        var txt = '';
+                        txt = "<h5 class=\"text-center mt-3\" id = 'predict_price2'>예측된 배출량은 "+data.price+" 입니다.</h5>"
+                        $('#predict_emission3').html(txt)
+                    }
+                })
+            })
+        });
+        </script>
+        
+        <!-- Bootstrap core JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="{% static 'js/scripts.js'%}"></script>
@@ -279,5 +451,13 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+
+
+
+
+
+
     </body>
 </html>
+
