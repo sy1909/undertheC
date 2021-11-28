@@ -56,7 +56,7 @@ def model_load(request):
         x_data = arr[0:4]
         dict = sess.run(hypothesis, feed_dict={X: x_data})
         print(dict[0])
-        context = {'price' : str(dict[0])}
+        context = {'price' : str(dict[0][0])}
         
         return render(request , 'index.html' , context)
 
@@ -69,9 +69,12 @@ from konlpy.tag import Kkma
 from konlpy.tag import Twitter
 from wordcloud import WordCloud
 import os   
+import random
 
 def create_wordcloud(request):
     print('워드클라우드를 생성합니다.')
+
+        
     if request.method == 'POST': 
         keyword = request.POST['keyword']
         print(keyword)
@@ -123,7 +126,6 @@ def create_wordcloud(request):
         # plt.show()
         return render(request , 'index.html' , {'imgfile':'img'})
     
-    
 def wordcloud2(request):
     print('ajax워드클라우드를 생성합니다.')
     if request.method == 'POST': 
@@ -166,16 +168,18 @@ def wordcloud2(request):
         #-------------------------------------------
         wordcloud = WordCloud().generate(filtered_title)
 
-        font = "C:\\Users\\ksy\\Downloads\\클로바 나눔손글씨\\나무정원\\나눔손글씨 나무정원.ttf"
+        font = "./final_project_ESG/나눔손글씨 나무정원.ttf"
 
         wc = WordCloud(font_path=font, background_color="white",  width=1000,  height=1000, max_words=100)
         wc = wc.generate_from_frequencies(data)
+        numb = random.randrange(1, 10000) 
         wc.to_file('./static/assets/img/wordcloudkey.jpg')  
+        print(numb)
         # plt.figure(figsize=(10,10))
         # plt.imshow(wc, interpolation='bilinear')
         # plt.axis('off')
         # plt.show()
-        return JsonResponse({'imgfile':'img'},safe = False)
+        return JsonResponse({'imgnum':str(numb)},safe = False)
 
 def model_load2(request):
     print('배출권 시세 예측버튼이 눌렸습니다.')
@@ -198,7 +202,7 @@ def model_load2(request):
         x_data = arr[0:4]
         dict = sess.run(hypothesis, feed_dict={X: x_data})
         print(dict[0])
-        context = {'price' : str(dict[0])}
+        context = {'price' : str(dict[0][0])}
         
         return JsonResponse(context,safe = False)
     

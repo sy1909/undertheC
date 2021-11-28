@@ -44,6 +44,6 @@ def model_load_emission(request):
     x_data = arr[0:7]
     dict = sess.run(hypothesis, feed_dict={X: x_data})
     print(dict[0])
-    context = {'price' : str(dict[0])}
+    context = {'price' : str(dict[0][0])}
     
     return JsonResponse(context,safe = False)
